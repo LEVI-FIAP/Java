@@ -17,4 +17,4 @@ br\com\gslevi\dto\RelatorioRequestDTO.class
 br\com\gslevi\resource\UsuarioResource.class
 br\com\gslevi\dto\UsuarioRequestDTO.class
 br\com\gslevi\model\Regiao.class
-br\com\gslevi\Test.class
+br\com\gslevi\Main.class
