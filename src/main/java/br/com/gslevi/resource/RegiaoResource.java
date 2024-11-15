@@ -1,0 +1,46 @@
+package br.com.gslevi.resource;
+
+import br.com.gslevi.dto.RegiaoDTO;
+import br.com.gslevi.service.RegiaoService;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+
+import java.sql.SQLException;
+import java.util.List;
+
+@Path("/regions")
+public class RegiaoResource {
+
+    private final RegiaoService regiaoService = new RegiaoService();
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<RegiaoDTO> listRegions() throws SQLException {
+        return regiaoService.listar();
+    }
+
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getRegionById(@PathParam("id") int id) throws SQLException {
+        RegiaoDTO regiaoDTO = regiaoService.buscarPorId(id);
+
+        if (regiaoDTO == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("Regiao com ID " + id + " não encontrada.")
+                    .build();
+        } else {
+            return Response.ok(regiaoDTO).build();
+        }
+    }
+
+
+
+
+
+}

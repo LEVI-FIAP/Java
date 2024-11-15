@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact name="gslevi">
+    <output-path>$PROJECT_DIR$/out/artifacts/gslevi</output-path>
+    <root id="root">
+      <element id="archive" name="gslevi.war">
+        <element id="artifact" artifact-name="GS_LEVI:war" />
+      </element>
+    </root>
+  </artifact>
+</component>
