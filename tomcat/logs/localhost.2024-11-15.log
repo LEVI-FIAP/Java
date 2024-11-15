@@ -181,3 +181,6 @@
 		at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 		at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:347)
 		at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:478)
+15-Nov-2024 15:14:36.771 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+15-Nov-2024 15:14:36.771 INFO [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+15-Nov-2024 15:14:36.775 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@3a42145')
