@@ -27,7 +27,7 @@ public class RelatorioResource {
                         .build();
             } else {
                 return Response.status(Response.Status.CONFLICT)
-                        .entity("RESPONSE 409 - Relatorio já existente...")
+                        .entity("RESPONSE 409 - Relatorio ja existente...")
                         .build();
             }
         } catch (SQLException e) {
