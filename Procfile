@@ -1,0 +1,1 @@
+javar -jar heroku-jvm-application-deployer.jar --app=gslevi target/gslevi.war
