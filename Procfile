@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar webapp-runner-10.1.18.0.jar ${WEBAPP_RUNNER_OPTS} --port $PORT ./target/gslevi.war
+web: java $JAVA_OPTS -jar webapp-runner.jar ${WEBAPP_RUNNER_OPTS} --port $PORT ./target/gslevi.war
