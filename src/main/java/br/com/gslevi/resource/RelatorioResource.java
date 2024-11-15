@@ -33,7 +33,7 @@ public class RelatorioResource {
         } catch (SQLException e) {
             e.printStackTrace();
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity("RESPONSE 500 - Ocorreu um erro ao tentar registrar o relatorio...")
+                    .entity("RESPONSE 500 - Ocorreu um erro ao tentar registrar o relatório...")
                     .build();
         }
     }
