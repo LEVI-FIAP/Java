@@ -145,6 +145,8 @@
                 <goal>copy</goal>
               </goals>
               <configuration>
+                <outputDirectory>target/dependencies</outputDirectory>
+                <silent>true</silent>
                 <artifactItems>
                   <artifactItem>
                     <groupId>com.heroku</groupId>
