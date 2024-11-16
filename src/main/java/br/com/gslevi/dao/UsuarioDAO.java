@@ -29,11 +29,11 @@ public class UsuarioDAO {
                 return 0;
             }
 
-            sql = "INSERT INTO usuario (email, senha, nome_usuario) VALUES (?, ?, ?)";
+            sql = "INSERT INTO usuario (nome_usuario, email, senha) VALUES (?, ?, ?)";
             SQLCommand = connection.prepareStatement(sql);
-            SQLCommand.setString(1, usuario.getEmail());
-            SQLCommand.setString(2, usuario.getSenha());
-            SQLCommand.setString(3, usuario.getUsername());
+            SQLCommand.setString(1, usuario.getUsername());
+            SQLCommand.setString(2, usuario.getEmail());
+            SQLCommand.setString(3, usuario.getSenha());
 
             rowsAffected = SQLCommand.executeUpdate();
             if (rowsAffected > 0) {
@@ -67,9 +67,9 @@ public class UsuarioDAO {
             if (result.next()) {
                 usuario = new Usuario();
                 usuario.setId(result.getInt(1));
-                usuario.setEmail(result.getString(2));
-                usuario.setSenha(result.getString(3));
-                usuario.setUsername(result.getString(4));
+                usuario.setUsername(result.getString(2));
+                usuario.setEmail(result.getString(3));
+                usuario.setSenha(result.getString(4));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,9 +96,9 @@ public class UsuarioDAO {
             while (result.next()){
                 Usuario usuario = new Usuario();
                 usuario.setId(result.getInt(1));
-                usuario.setEmail(result.getString(2));
-                usuario.setSenha(result.getString(3));
-                usuario.setUsername(result.getString(4));
+                usuario.setUsername(result.getString(2));
+                usuario.setEmail(result.getString(3));
+                usuario.setSenha(result.getString(4));
                 usuarios.add(usuario);
             }
             comandoSql.close();
@@ -114,12 +114,12 @@ public class UsuarioDAO {
         PreparedStatement SQLCommand = null;
         int rowsAffected = 0;
         try{
-            String sql = "update usuario set email = ?, senha = ?, " +
-                    "nome_usuario = ? where id_usu = ?";
+            String sql = "update usuario set nome_usuario = ?, email = ?, " +
+                    "senha = ? where id_usu = ?";
             SQLCommand =  connection.prepareStatement(sql);
-            SQLCommand.setString(1, usuario.getEmail());
-            SQLCommand.setString(2, usuario.getSenha());
-            SQLCommand.setString(3, usuario.getUsername());
+            SQLCommand.setString(1, usuario.getUsername());
+            SQLCommand.setString(2, usuario.getEmail());
+            SQLCommand.setString(3, usuario.getSenha());
             SQLCommand.setInt(4, id);
             rowsAffected = SQLCommand.executeUpdate();
             System.out.println("Usuario alterado com sucesso!");
