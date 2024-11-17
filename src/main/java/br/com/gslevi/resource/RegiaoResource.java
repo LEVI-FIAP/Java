@@ -15,20 +15,20 @@ import java.util.List;
 @Path("/regions")
 public class RegiaoResource {
 
-    private final RegiaoService regiaoService = new RegiaoService();
+    private final RegiaoService regionService = new RegiaoService();
 
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<RegiaoDTO> listRegions() throws SQLException {
-        return regiaoService.listar();
+        return regionService.listar();
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getRegionById(@PathParam("id") int id) throws SQLException {
-        RegiaoDTO regiaoDTO = regiaoService.buscarPorId(id);
+        RegiaoDTO regiaoDTO = regionService.buscarPorId(id);
 
         if (regiaoDTO == null) {
             return Response.status(Response.Status.NOT_FOUND)

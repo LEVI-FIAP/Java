@@ -118,13 +118,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.1.0</version>
-          <configuration>
-            <archive>
-              <manifestEntries>
-                <Main-Class>br.com.gslevi.Main</Main-Class> <!-- Replace with your main class -->
-              </manifestEntries>
-            </archive>
-          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
