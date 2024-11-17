@@ -176,7 +176,6 @@ public class RelatorioDAO {
             int rowsAffected = comandoSql.executeUpdate();
             if (rowsAffected > 0) {
                 result = 1;
-                System.out.println("Relatorio deletado com sucesso! ");
             } else {System.out.println("Falha ao deletar relatorio...");}
             comandoSql.close();
             connection.close();

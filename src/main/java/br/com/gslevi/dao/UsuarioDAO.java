@@ -147,9 +147,7 @@ public class UsuarioDAO {
             result = (rowsAffected > 0 ) ? 1 : 0;
             comandoSql.close();
             connection.close();
-            System.out.println("Usuário deletado com sucesso! ");
         }catch (SQLException e){
-            System.out.println("Falha ao deletar usuario...");
             e.printStackTrace();
         }
 

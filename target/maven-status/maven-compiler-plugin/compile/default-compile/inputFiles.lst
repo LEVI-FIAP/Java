@@ -8,6 +8,9 @@ C:\Users\supev\Documents\EOQ\FIAP\1TDSPM\Global Solution 2\Java\gslevi\src\main\
 C:\Users\supev\Documents\EOQ\FIAP\1TDSPM\Global Solution 2\Java\gslevi\src\main\java\br\com\gslevi\dto\RelatorioResponseDTO.java
 C:\Users\supev\Documents\EOQ\FIAP\1TDSPM\Global Solution 2\Java\gslevi\src\main\java\br\com\gslevi\dto\UsuarioRequestDTO.java
 C:\Users\supev\Documents\EOQ\FIAP\1TDSPM\Global Solution 2\Java\gslevi\src\main\java\br\com\gslevi\dto\UsuarioResponseDTO.java
+C:\Users\supev\Documents\EOQ\FIAP\1TDSPM\Global Solution 2\Java\gslevi\src\main\java\br\com\gslevi\exception\ConflictExceptionZ.java
+C:\Users\supev\Documents\EOQ\FIAP\1TDSPM\Global Solution 2\Java\gslevi\src\main\java\br\com\gslevi\exception\InternalServerErrorExceptionZ.java
+C:\Users\supev\Documents\EOQ\FIAP\1TDSPM\Global Solution 2\Java\gslevi\src\main\java\br\com\gslevi\exception\NotFoundExceptionZ.java
 C:\Users\supev\Documents\EOQ\FIAP\1TDSPM\Global Solution 2\Java\gslevi\src\main\java\br\com\gslevi\model\Regiao.java
 C:\Users\supev\Documents\EOQ\FIAP\1TDSPM\Global Solution 2\Java\gslevi\src\main\java\br\com\gslevi\model\Relatorio.java
 C:\Users\supev\Documents\EOQ\FIAP\1TDSPM\Global Solution 2\Java\gslevi\src\main\java\br\com\gslevi\model\Usuario.java

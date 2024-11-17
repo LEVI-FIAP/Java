@@ -3,6 +3,9 @@ package br.com.gslevi.resource;
 
 import br.com.gslevi.dto.UsuarioRequestDTO;
 import br.com.gslevi.dto.UsuarioResponseDTO;
+import br.com.gslevi.exception.ConflictExceptionZ;
+import br.com.gslevi.exception.InternalServerErrorExceptionZ;
+import br.com.gslevi.exception.NotFoundExceptionZ;
 import br.com.gslevi.service.UsuarioService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -26,15 +29,10 @@ public class UsuarioResource {
                         .entity("RESPONSE 201 - Usuario registrado com sucesso!")
                         .build();
             } else {
-                return Response.status(Response.Status.CONFLICT)
-                        .entity("RESPONSE 409 - Usuario já existente...")
-                        .build();
+                throw new ConflictExceptionZ("RESPONSE 409 - Usuario já existente...");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity("RESPONSE 500 - Ocorreu um erro ao tentar registrar o usuario...")
-                    .build();
+            throw new InternalServerErrorExceptionZ("RESPONSE 500 - Ocorreu um erro ao tentar registrar o usuario...");
         }
     }
 
@@ -42,40 +40,47 @@ public class UsuarioResource {
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateUser(@PathParam("id") int id, UsuarioRequestDTO usuario) throws SQLException {
-        int result = userService.update(id, usuario);
+    public Response updateUser(@PathParam("id") int id, UsuarioRequestDTO usuario) {
+        try {
+            int result = userService.update(id, usuario);
 
-        if (result > 0) {
-            return Response.ok("RESPONSE 200 - Usuario atualizado com sucesso!").build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity("RESPONSE 404 - Usuario não encontrado para ser atualizado.")
-                    .build();
+            if (result > 0) {
+                return Response.ok("RESPONSE 200 - Usuario atualizado com sucesso!").build();
+            } else {
+                throw new NotFoundExceptionZ("RESPONSE 404 - Usuario não encontrado para ser atualizado.");
+            }
+        } catch (SQLException e) {
+            throw new InternalServerErrorExceptionZ("RESPONSE 500 - Ocorreu um erro ao tentar atualizar o usuario...");
         }
     }
 
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<UsuarioResponseDTO> listUsers() throws SQLException {
-        return userService.listar();
+    public List<UsuarioResponseDTO> listUsers() {
+        try {
+            return userService.listar();
+        } catch (SQLException e) {
+            throw new InternalServerErrorExceptionZ("RESPONSE 500 - Ocorreu um erro ao tentar listar os usuarios...");
+        }
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getUserById(@PathParam("id") int id) throws SQLException {
-        UsuarioResponseDTO usuario = userService.buscarPorId(id);
+    public Response getUserById(@PathParam("id") int id) {
+        try {
+            UsuarioResponseDTO usuario = userService.buscarPorId(id);
 
-        if (usuario == null) {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity("RESPONSE 404 - Usuario com ID " + id + " não encontrado")
-                    .build();
-        } else {
-            return Response.ok(usuario).build();
+            if (usuario == null) {
+                throw new NotFoundExceptionZ("RESPONSE 404 - Usuario com ID " + id + " não encontrado");
+            } else {
+                return Response.ok(usuario).build();
+            }
+        } catch (SQLException e) {
+            throw new InternalServerErrorExceptionZ("RESPONSE 500 - Ocorreu um erro ao tentar buscar o usuario...");
         }
     }
-
 
 
     @DELETE
@@ -85,10 +90,10 @@ public class UsuarioResource {
 
         if (result > 0) {
             return Response.ok("RESPONSE 200 - Usuario deletado com sucesso!").build();
+        } else if (result == 0) {
+            throw new NotFoundExceptionZ("RESPONSE 404 - Usuario não encontrado para ser deletado.");
         } else {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity("RESPONSE 404 - Usuario não encontrado!")
-                    .build();
+            throw new InternalServerErrorExceptionZ("RESPONSE 500 - Ocorreu um erro ao tentar deletar o usuario...");
         }
     }
 

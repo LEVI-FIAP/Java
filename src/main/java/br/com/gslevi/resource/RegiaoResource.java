@@ -1,6 +1,8 @@
 package br.com.gslevi.resource;
 
 import br.com.gslevi.dto.RegiaoDTO;
+import br.com.gslevi.exception.InternalServerErrorExceptionZ;
+import br.com.gslevi.exception.NotFoundExceptionZ;
 import br.com.gslevi.service.RegiaoService;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,22 +22,28 @@ public class RegiaoResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<RegiaoDTO> listRegions() throws SQLException {
-        return regionService.listar();
+    public List<RegiaoDTO> listRegions() {
+        try {
+            return regionService.listar();
+        } catch (SQLException e) {
+            throw new InternalServerErrorExceptionZ("RESPONSE 500 - Ocorreu um erro ao tentar listar as regiões...");
+        }
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getRegionById(@PathParam("id") int id) throws SQLException {
-        RegiaoDTO regiaoDTO = regionService.buscarPorId(id);
+    public Response getRegionById(@PathParam("id") int id) {
+        try {
+            RegiaoDTO regiaoDTO = regionService.buscarPorId(id);
 
-        if (regiaoDTO == null) {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity("Regiao com ID " + id + " não encontrada.")
-                    .build();
-        } else {
-            return Response.ok(regiaoDTO).build();
+            if (regiaoDTO == null) {
+                throw new NotFoundExceptionZ("RESPONSE 404 - Regiao com ID " + id + " não encontrada.");
+            } else {
+                return Response.ok(regiaoDTO).build();
+            }
+        } catch (SQLException e) {
+            throw new InternalServerErrorExceptionZ("RESPONSE 500 - Ocorreu um erro ao tentar buscar a região...");
         }
     }
 

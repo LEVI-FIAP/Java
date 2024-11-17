@@ -2,12 +2,14 @@ br\com\gslevi\service\UsuarioService.class
 br\com\gslevi\resource\RelatorioResource.class
 br\com\gslevi\config\CORSFilter.class
 br\com\gslevi\dto\RelatorioResponseDTO.class
+br\com\gslevi\exception\NotFoundExceptionZ.class
 br\com\gslevi\dao\ConnectionFactory.class
 br\com\gslevi\dto\RegiaoDTO.class
 br\com\gslevi\resource\RegiaoResource.class
 br\com\gslevi\service\RelatorioService.class
 br\com\gslevi\service\RegiaoService.class
 br\com\gslevi\dao\RegiaoDAO.class
+br\com\gslevi\exception\InternalServerErrorExceptionZ.class
 br\com\gslevi\dao\UsuarioDAO.class
 br\com\gslevi\dto\UsuarioResponseDTO.class
 br\com\gslevi\model\Relatorio.class
@@ -15,6 +17,7 @@ br\com\gslevi\dao\RelatorioDAO.class
 br\com\gslevi\model\Usuario.class
 br\com\gslevi\dto\RelatorioRequestDTO.class
 br\com\gslevi\resource\UsuarioResource.class
+br\com\gslevi\exception\ConflictExceptionZ.class
 br\com\gslevi\dto\UsuarioRequestDTO.class
 br\com\gslevi\model\Regiao.class
 br\com\gslevi\resource\HomeResource.class
