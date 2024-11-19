@@ -1,11 +1,13 @@
 package br.com.gslevi.resource;
 
 
+import br.com.gslevi.dto.UsuarioLoginDTO;
 import br.com.gslevi.dto.UsuarioRequestDTO;
 import br.com.gslevi.dto.UsuarioResponseDTO;
 import br.com.gslevi.exception.ConflictExceptionZ;
 import br.com.gslevi.exception.InternalServerErrorExceptionZ;
 import br.com.gslevi.exception.NotFoundExceptionZ;
+import br.com.gslevi.exception.UnauthorizedExceptionZ;
 import br.com.gslevi.service.UsuarioService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -96,5 +98,26 @@ public class UsuarioResource {
             throw new InternalServerErrorExceptionZ("RESPONSE 500 - Ocorreu um erro ao tentar deletar o usuario...");
         }
     }
+
+    @POST
+    @Path("/login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response loginUser(UsuarioLoginDTO usuarioDTO) {
+        try {
+            UsuarioLoginDTO loggedInUser = userService.login(usuarioDTO);
+
+            if (loggedInUser != null) {
+                return Response.status(Response.Status.OK)
+                        .entity(loggedInUser)
+                        .build();
+            } else {
+                throw new UnauthorizedExceptionZ("RESPONSE 401 - Email ou senha inválidos.");
+            }
+        } catch (SQLException e) {
+            throw new InternalServerErrorExceptionZ("RESPONSE 500 - Ocorreu um erro ao tentar deletar o usuario...");
+        }
+    }
+
 
 }

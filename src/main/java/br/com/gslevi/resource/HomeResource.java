@@ -20,7 +20,7 @@ public class HomeResource {
         response.put("project_name", "LEVI");
 
         // Explicitly define and add the "endpoints" list
-        response.put("endpoints", new ArrayList<>(Arrays.asList("/users", "/users/10", "/regions", "/regions/1", "/reports", "/reports/8")));
+        response.put("endpoints", new ArrayList<>(Arrays.asList("/users", "/users/10", "/regions", "/regions/1", "/reports", "/reports/8", "/reports?user=10")));
 
         // Return the response as JSON
         return Response.ok(response).build();

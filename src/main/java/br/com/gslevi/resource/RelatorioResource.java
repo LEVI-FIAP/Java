@@ -56,13 +56,21 @@ public class RelatorioResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<RelatorioResponseDTO> listReports() {
+    public List<RelatorioResponseDTO> listReports(@QueryParam("user") Integer userId) {
         try {
-            return relatorioService.listar();
+            if (userId != null && userId <= 0) {
+                throw new BadRequestException("RESPONSE 400 - O ID do usuário deve ser maior que 0.");
+            }
+            if (userId == null) {
+                return relatorioService.listar();
+            } else {
+                return relatorioService.listarPorUserId(userId);
+            }
         } catch (SQLException e) {
             throw new InternalServerErrorException("RESPONSE 500 - Ocorreu um erro ao tentar listar os relatórios...");
         }
     }
+
 
     @GET
     @Path("/{id}")
@@ -80,7 +88,6 @@ public class RelatorioResource {
             throw new InternalServerErrorException("RESPONSE 500 - Ocorreu um erro ao tentar buscar o relatório...");
         }
     }
-
 
 
     @DELETE

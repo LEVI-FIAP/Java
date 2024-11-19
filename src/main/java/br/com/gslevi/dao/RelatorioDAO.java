@@ -26,7 +26,7 @@ public class RelatorioDAO {
                 return 0;
             }
 
-            sql = "INSERT INTO relatorio (CONSUMO_MENSAL, CONTA_LUZ, AREA_DESEJADA, QTD_PAINEIS, POTENCIA_TOTAL, CUSTO_INSTAL, ECONOMIA_MENSAL, PAYBACK, ENERGIA_MES, REGIAO_ID_REG, USUARIO_ID_USU) " +
+            sql = "INSERT INTO relatorio (CONSUMO_MENSAL, CONTA_LUZ, AREA_DESEJADA, QTD_PAINEIS, POTENCIA_TOTAL, CUSTO_INSTAL, ECONOMIA_MENSAL, PAYBACK, ENERGIA_MES, ID_REG, ID_USU) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             SQLCommand = connection.prepareStatement(sql);
             SQLCommand.setFloat(1, relatorio.getConsumoMensal());
@@ -99,6 +99,48 @@ public class RelatorioDAO {
         return relatorio;
     }
 
+    public List<Relatorio> listarRelatoriosPorUserId(int userId) throws SQLException {
+        connection = ConnectionFactory.getConnection();
+        PreparedStatement comandoSql = null;
+        List<Relatorio> relatorios = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM relatorio WHERE id_usu = ? ORDER BY id_relatorio";
+            comandoSql = connection.prepareStatement(sql);
+            comandoSql.setInt(1, userId);
+            ResultSet result = comandoSql.executeQuery();
+
+            while (result.next()) {
+                Relatorio relatorio = new Relatorio();
+                relatorio.setId(result.getInt(1));
+                relatorio.setConsumoMensal(result.getFloat(2));
+                relatorio.setContaLuz(result.getFloat(3));
+                relatorio.setAreaDesejada(result.getFloat(4));
+                relatorio.setQtdPaineis(result.getInt(5));
+                relatorio.setPotenciaTotal(result.getFloat(6));
+                relatorio.setCustoInstalacao(result.getFloat(7));
+                relatorio.setEconomiaMensal(result.getFloat(8));
+                relatorio.setPayback(result.getFloat(9));
+                relatorio.setEnergiaMes(result.getFloat(10));
+                relatorio.setIdUsuario(result.getInt(11));
+                relatorio.setIdRegiao(result.getInt(12));
+                relatorios.add(relatorio);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (comandoSql != null) {
+                comandoSql.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+
+        return relatorios;
+    }
+
+
 
     public List<Relatorio> listarRelatorios(){
         List<Relatorio> relatorios = new ArrayList<>();
@@ -138,7 +180,7 @@ public class RelatorioDAO {
         try{
             String sql = "update relatorio set CONSUMO_MENSAL = ?, CONTA_LUZ = ?, " +
                     "AREA_DESEJADA = ?, QTD_PAINEIS = ?, POTENCIA_TOTAL = ?, CUSTO_INSTAL = ?, ECONOMIA_MENSAL = ?, " +
-                    "PAYBACK = ?, ENERGIA_MES = ?, REGIAO_ID_REG = ? where id_relatorio = ?";
+                    "PAYBACK = ?, ENERGIA_MES = ?, ID_REG = ? where id_relatorio = ?";
             SQLCommand =  connection.prepareStatement(sql);
             SQLCommand.setFloat(1, relatorio.getConsumoMensal());
             SQLCommand.setFloat(2, relatorio.getContaLuz());

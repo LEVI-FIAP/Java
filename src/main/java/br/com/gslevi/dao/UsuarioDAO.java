@@ -85,6 +85,39 @@ public class UsuarioDAO {
         return usuario;
     }
 
+    public Usuario buscarPorEmail(String email) throws SQLException {
+        connection = ConnectionFactory.getConnection();
+        PreparedStatement comandoSql = null;
+        Usuario usuario = null;
+
+        try {
+            String sql = "SELECT * FROM usuario WHERE email = ?";
+            comandoSql = connection.prepareStatement(sql);
+            comandoSql.setString(1, email);
+            ResultSet result = comandoSql.executeQuery();
+
+            if (result.next()) {
+                usuario = new Usuario();
+                usuario.setId(result.getInt(1)); // Adjust column names as needed
+                usuario.setUsername(result.getString(2));
+                usuario.setEmail(result.getString(3));
+                usuario.setSenha(result.getString(4));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (comandoSql != null) {
+                comandoSql.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+
+        return usuario;
+    }
+
+
 
     public List<Usuario> listarUsuarios(){
         List<Usuario> usuarios = new ArrayList<>();
@@ -145,6 +178,11 @@ public class UsuarioDAO {
             comandoSql.setInt(1, id);
             int rowsAffected = comandoSql.executeUpdate();
             result = (rowsAffected > 0 ) ? 1 : 0;
+            if (rowsAffected > 0) {
+                System.out.println("Usuário deletado com sucesso!");
+            } else {
+                System.out.println("Falha ao deletar usuario...");
+            }
             comandoSql.close();
             connection.close();
         }catch (SQLException e){

@@ -1,12 +1,14 @@
 package br.com.gslevi.service;
 
 import br.com.gslevi.dao.UsuarioDAO;
+import br.com.gslevi.dto.UsuarioLoginDTO;
 import br.com.gslevi.dto.UsuarioRequestDTO;
 import br.com.gslevi.dto.UsuarioResponseDTO;
 import br.com.gslevi.model.Usuario;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class UsuarioService {
@@ -15,6 +17,10 @@ public class UsuarioService {
 
     public int registrar(UsuarioRequestDTO usuarioDTO) throws SQLException {
         Usuario usuario = usuarioDTO.convertToModel(usuarioDTO);
+        if (Objects.equals(usuario.getEmail(), usuarioDAO.buscarPorEmail(usuario.getEmail())))
+        {
+            return 0;
+        };
         return usuarioDAO.registrarUsuario(usuario);
     }
 
@@ -49,6 +55,19 @@ public class UsuarioService {
 
     public int deletar(int id){
         return usuarioDAO.deletarUsuario(id);
+    }
+
+    public UsuarioLoginDTO login(UsuarioLoginDTO usuarioDTO) throws SQLException {
+        Usuario usuario = usuarioDAO.buscarPorEmail(usuarioDTO.getEmail());
+
+        if (usuario == null) {
+            return null;
+        } else if (usuario.getEmail().equals(usuarioDTO.getEmail()) && usuario.getSenha().equals(usuarioDTO.getSenha())) {
+            usuarioDTO.setId(usuario.getId());
+            return usuarioDTO;
+        } else {
+            return null;
+        }
     }
 
 }

@@ -18,11 +18,23 @@ public class RelatorioService {
 
     public int registrar(RelatorioRequestDTO relatorioDTO) throws SQLException {
         Relatorio relatorio = relatorioDTO.convertToModel(relatorioDTO);
+        relatorio.setQtdPaineis();
+        relatorio.setPotenciaTotal();
+        relatorio.setCustoInstalacao();
+        relatorio.setEnergiaMes();
+        relatorio.setEconomiaMensal();
+        relatorio.setPayback();
         return relatorioDAO.registrarRelatorio(relatorio);
     }
 
     public int update(int id, RelatorioRequestDTO relatorioDTO) throws SQLException {
         Relatorio relatorio = relatorioDTO.convertToModel(relatorioDTO);
+        relatorio.setQtdPaineis();
+        relatorio.setPotenciaTotal();
+        relatorio.setCustoInstalacao();
+        relatorio.setEnergiaMes();
+        relatorio.setEconomiaMensal();
+        relatorio.setPayback();
         return relatorioDAO.alterarRelatorio(id, relatorio);
     }
 
@@ -58,6 +70,31 @@ public class RelatorioService {
         RelatorioResponseDTO relatorioDTO = new RelatorioResponseDTO();
         return relatorioDTO.convertToDto(relatorio);
     }
+
+    public List<RelatorioResponseDTO> listarPorUserId(int id) throws SQLException {
+        List<Relatorio> relatorios = relatorioDAO.listarRelatoriosPorUserId(id);
+        return relatorios.stream()
+                .map(relatorio -> {
+                    RelatorioResponseDTO relatorioDTO = new RelatorioResponseDTO();
+                    relatorioDTO.setId(relatorio.getId());
+                    relatorioDTO.setConsumoMensal(relatorio.getConsumoMensal());
+                    relatorioDTO.setContaLuz(relatorio.getContaLuz());
+                    relatorioDTO.setAreaDesejada(relatorio.getAreaDesejada());
+                    relatorioDTO.setQtdPaineis(relatorio.getQtdPaineis());
+                    relatorioDTO.setPotenciaTotal(relatorio.getPotenciaTotal());
+                    relatorioDTO.setCustoInstalacao(relatorio.getCustoInstalacao());
+                    relatorioDTO.setEconomiaMensal(relatorio.getEconomiaMensal());
+                    relatorioDTO.setPayback(relatorio.getPayback());
+                    relatorioDTO.setEnergiaMes(relatorio.getEnergiaMes());
+                    relatorioDTO.setIdRegiao(relatorio.getIdRegiao());
+                    relatorioDTO.setIdUsuario(relatorio.getIdUsuario());
+                    return relatorioDTO;
+                })
+                .collect(Collectors.toList());
+    }
+
+
+
 
     public int deletar(int id){
         return relatorioDAO.deletarRelatorio(id);
