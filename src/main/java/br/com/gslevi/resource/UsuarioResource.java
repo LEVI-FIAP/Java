@@ -8,6 +8,7 @@ import br.com.gslevi.exception.ConflictExceptionZ;
 import br.com.gslevi.exception.InternalServerErrorExceptionZ;
 import br.com.gslevi.exception.NotFoundExceptionZ;
 import br.com.gslevi.exception.UnauthorizedExceptionZ;
+import br.com.gslevi.service.RelatorioService;
 import br.com.gslevi.service.UsuarioService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -20,6 +21,7 @@ import java.util.List;
 public class UsuarioResource {
 
     private UsuarioService userService = new UsuarioService();
+    private RelatorioService relatorioService = new RelatorioService();
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

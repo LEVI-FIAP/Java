@@ -230,4 +230,27 @@ public class RelatorioDAO {
         return result;
     }
 
+    public int deletarRelatorioPorUserId(int id){
+        connection = ConnectionFactory.getConnection();
+        PreparedStatement comandoSql = null;
+        int result = 0;
+        try{
+            String sql = "delete from relatorio where id_usu = ?";
+            comandoSql =  connection.prepareStatement(sql);
+            comandoSql.setInt(1, id);
+            int rowsAffected = comandoSql.executeUpdate();
+            if (rowsAffected > 0) {
+                result = 1;
+            } else {System.out.println("Falha ao deletar relatorios...");}
+            comandoSql.close();
+            connection.close();
+
+        }catch (SQLException e){
+
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
 }

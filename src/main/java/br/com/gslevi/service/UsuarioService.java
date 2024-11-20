@@ -1,5 +1,6 @@
 package br.com.gslevi.service;
 
+import br.com.gslevi.dao.RelatorioDAO;
 import br.com.gslevi.dao.UsuarioDAO;
 import br.com.gslevi.dto.UsuarioLoginDTO;
 import br.com.gslevi.dto.UsuarioRequestDTO;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 public class UsuarioService {
 
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
+    private final RelatorioDAO relatorioDAO = new RelatorioDAO();
 
     public int registrar(UsuarioRequestDTO usuarioDTO) throws SQLException {
         Usuario usuario = usuarioDTO.convertToModel(usuarioDTO);
@@ -54,6 +56,7 @@ public class UsuarioService {
     }
 
     public int deletar(int id){
+        relatorioDAO.deletarRelatorioPorUserId(id);
         return usuarioDAO.deletarUsuario(id);
     }
 
