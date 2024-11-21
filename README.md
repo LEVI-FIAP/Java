@@ -9,7 +9,7 @@
 
 #### Link do vídeos:
 - Pitch: https://www.youtube.com/watch?v=PkXg9ScyzIg&ab_channel=Fukurou
-- 
+- Explicativo: https://youtu.be/7Y3WbD4-JSU
 
 ### *** Esse projeto utiliza a versão 9.0.30 do Tomcat, que -->NÃO<-- é compatível com as versões 10.X
 ### Link do Tomcat 9.0.30 -> https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.30/
