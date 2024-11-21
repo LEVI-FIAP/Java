@@ -1,6 +1,7 @@
 # PROJETO L.E.V.I 
 ## GS 02 
 ## Link do deploy: https://gslevi-86130ccf0dc3.herokuapp.com/
+## Link do repositório: https://github.com/LEVI-FIAP/Java
 - Vicenzo Massao -- 554833
 - Erick Alves -- 556862
 - Luiz Neri -- 556864
@@ -10,8 +11,9 @@
 - 
 
 ### *** Esse projeto utiliza a versão 9.0.30 do Tomcat, que -->NÃO<-- é compatível com as versões 10.X
+### Link do Tomcat 9.0.30 -> https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.30/
 
-1. Os arquivos system.properties, webapp-runner.jar, heroku-jvm-application-deployer.jar, e Procfile se referem ao processo de deployment do projeto no site Heroku, e não afetam a estrutura e o funcionamento do projeto de nenhuma forma.
+1. Os arquivos system.properties e Procfile se referem ao processo de deployment do projeto no site Heroku, e não afetam a estrutura e o funcionamento do projeto de nenhuma forma.
 
 2. A documentação se encontra no arquivo: JAVA_GS2.pdf
 

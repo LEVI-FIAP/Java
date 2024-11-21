@@ -82,8 +82,8 @@ public class RelatorioDAO {
                 relatorio.setEconomiaMensal(result.getFloat(8));
                 relatorio.setPayback(result.getFloat(9));
                 relatorio.setEnergiaMes(result.getFloat(10));
-                relatorio.setIdRegiao(result.getInt(11));
-                relatorio.setIdUsuario(result.getInt(12));
+                relatorio.setIdUsuario(result.getInt(11));
+                relatorio.setIdRegiao(result.getInt(12));
             }
         } catch (SQLException e) {
             e.printStackTrace();
