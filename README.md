@@ -7,7 +7,7 @@
 - Erick Alves -- 556862
 - Luiz Neri -- 556864
 
-#### Link do vídeos:
+#### Links:
 - Pitch: https://www.youtube.com/watch?v=PkXg9ScyzIg&ab_channel=Fukurou
 - Explicativo: https://youtu.be/7Y3WbD4-JSU
 
