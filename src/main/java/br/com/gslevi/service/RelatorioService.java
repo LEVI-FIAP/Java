@@ -53,8 +53,8 @@ public class RelatorioService {
                     relatorioDTO.setEconomiaMensal(relatorio.getEconomiaMensal());
                     relatorioDTO.setPayback(relatorio.getPayback());
                     relatorioDTO.setEnergiaMes(relatorio.getEnergiaMes());
-                    relatorioDTO.setIdRegiao(relatorio.getIdRegiao());
                     relatorioDTO.setIdUsuario(relatorio.getIdUsuario());
+                    relatorioDTO.setIdRegiao(relatorio.getIdRegiao());
                     return relatorioDTO;
                 })
                 .collect(Collectors.toList());
