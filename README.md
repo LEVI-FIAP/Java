@@ -1,13 +1,14 @@
 # PROJETO L.E.V.I 
 ## GS 02 
-## Link do deploy: https://gslevi-86130ccf0dc3.herokuapp.com/
+## Link do deploy Java: https://gslevi-86130ccf0dc3.herokuapp.com/
+## Link do deploy Front: https://levi-fiap.github.io/Front-end/
 ## Link do repositório: https://github.com/LEVI-FIAP/Java
 - Vicenzo Massao -- 554833
 - Erick Alves -- 556862
 - Luiz Neri -- 556864
 
 #### Link do vídeos:
-- 
+- Pitch: https://www.youtube.com/watch?v=PkXg9ScyzIg&ab_channel=Fukurou
 - 
 
 ### *** Esse projeto utiliza a versão 9.0.30 do Tomcat, que -->NÃO<-- é compatível com as versões 10.X
