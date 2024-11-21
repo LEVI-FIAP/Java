@@ -218,6 +218,7 @@ public class RelatorioDAO {
             int rowsAffected = comandoSql.executeUpdate();
             if (rowsAffected > 0) {
                 result = 1;
+                System.out.println("Relatório com ID " + id + " foi deletado com sucesso!");
             } else {System.out.println("Falha ao deletar relatorio...");}
             comandoSql.close();
             connection.close();
@@ -241,6 +242,7 @@ public class RelatorioDAO {
             int rowsAffected = comandoSql.executeUpdate();
             if (rowsAffected > 0) {
                 result = 1;
+                System.out.println("Relatórios do usuário com UserID " + id + " foram deletados com sucesso.");
             } else {System.out.println("Falha ao deletar relatorios...");}
             comandoSql.close();
             connection.close();
