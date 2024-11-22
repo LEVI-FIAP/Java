@@ -22,7 +22,7 @@ public class UsuarioDAO {
             String sql = "SELECT id_usu FROM usuario WHERE id_usu = ? OR email = ?";
             SQLCommand = connection.prepareStatement(sql);
             SQLCommand.setInt(1, usuario.getId());
-            SQLCommand.setString(2, usuario.getUsername());
+            SQLCommand.setString(2, usuario.getEmail());
             result = SQLCommand.executeQuery();
 
             if (result.next()) {
