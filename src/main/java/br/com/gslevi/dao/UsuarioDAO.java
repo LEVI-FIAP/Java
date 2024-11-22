@@ -19,9 +19,10 @@ public class UsuarioDAO {
         ResultSet result = null;
 
         try {
-            String sql = "SELECT id_usu FROM usuario WHERE id_usu = ?";
+            String sql = "SELECT id_usu FROM usuario WHERE id_usu = ? OR email = ?";
             SQLCommand = connection.prepareStatement(sql);
             SQLCommand.setInt(1, usuario.getId());
+            SQLCommand.setString(2, usuario.getUsername());
             result = SQLCommand.executeQuery();
 
             if (result.next()) {
