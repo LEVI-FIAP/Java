@@ -1,7 +1,7 @@
 # PROJETO L.E.V.I 
 ## GS 02 
 ## Link do deploy Java: https://gslevi-86130ccf0dc3.herokuapp.com/
-## Link do deploy Front: https://levi-gs.vercel.app/
+## Link do deploy Front: https://levi-front-gs.vercel.app/
 ## Link do repositório: https://github.com/LEVI-FIAP/Java
 - Vicenzo Massao -- 554833
 - Erick Alves -- 556862
